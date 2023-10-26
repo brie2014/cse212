@@ -1,8 +1,10 @@
-public static class ArraysTester {
+public static class ArraysTester
+{
     /// <summary>
     /// Entry point for the tests
     /// </summary>
-    public static void Run() {
+    public static void Run()
+    {
         // Sample Test Cases (may not be comprehensive)
         Console.WriteLine("\n=========== PROBLEM 1 TESTS ===========");
         double[] multiples = MultiplesOf(7, 5);
@@ -39,9 +41,20 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        // make an array to hold the multiples that is the size of the length
+        var results = new double[length];
+        // loop through the specified length to get the correct number of multiples
+        for (var i = 0; i < length; i++)
+        {
+            // Find the value of the multiple. Note: we add 1 to i when multiplying to account for the zero based index
+            var multiple = number * (i + 1);
+            // add the multiple (number times i+1) to the array
+            results[i] = multiple;
+        }
+
+        return results; // replace this return statement with your own
     }
-    
+
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
     /// <c>&lt;List&gt;{1, 2, 3, 4, 5, 6, 7, 8, 9}</c> and an amount is 3 then the list returned should be 
@@ -56,6 +69,15 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Use the length of the list to figure out what index to slice from
+        var indexToSlice = data.Count - amount;
+        // Slice a piece of list and store it so we can add it back to the front
+        var listPieceToRotate = data.GetRange(indexToSlice, amount);
+        // Remove that same sliced piece from the list
+        data.RemoveRange(indexToSlice, amount);
+        // Add the sliced list piece back to the beginning of the list
+        data.InsertRange(0, listPieceToRotate);
 
     }
 }
