@@ -8,8 +8,10 @@
  * GitHub repository, unshared Google Drive folder) is acceptable.
  *
  */
-public static class TakingTurns {
-    public static void Test() {
+public static class TakingTurns
+{
+    public static void Test()
+    {
         // TODO Problem 1 - Run test cases and fix the code to match requirements
         // Test Cases
 
@@ -25,7 +27,7 @@ public static class TakingTurns {
         // Console.WriteLine(players);    // This can be un-commented out for debug help
         while (players.Length > 0)
             players.GetNextPerson();
-        // Defect(s) Found: 
+        // Defect(s) Found: Order is messed up-people are taking all their turns at once starting with the last person; Enqueue function was inserting persons at the beginning of the queue instead of the end
 
         Console.WriteLine("---------");
 
@@ -38,7 +40,8 @@ public static class TakingTurns {
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 5);
         players.AddPerson("Sue", 3);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
@@ -48,7 +51,7 @@ public static class TakingTurns {
         while (players.Length > 0)
             players.GetNextPerson();
 
-        // Defect(s) Found: 
+        // Defect(s) Found:  Order is messed up-people are taking all their turns at once starting with the last person;  Enqueue function was inserting persons at the beginning of the queue instead of the end
 
         Console.WriteLine("---------");
 
@@ -62,11 +65,12 @@ public static class TakingTurns {
         players.AddPerson("Tim", 0);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
-        // Defect(s) Found: 
+        // Defect(s) Found: Tim is only getting one turn, even though he should have infinite, so the queue has no one in it. If they have less than 1 turn (anything 0 or less is infinite turns), add them back to the queue. The code was only adding them back to the queue if they had more than 1 turn left.
 
         Console.WriteLine("---------");
 
@@ -76,6 +80,6 @@ public static class TakingTurns {
         Console.WriteLine("Test 4");
         players = new TakingTurnsQueue();
         players.GetNextPerson();
-        // Defect(s) Found:
+        // Defect(s) Found: No defect found! The error message displays as expected
     }
 }
