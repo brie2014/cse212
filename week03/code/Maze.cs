@@ -37,7 +37,6 @@ public class Maze
         if (isMoveAllowed)
         {
             _currX -= 1;
-            ShowStatus();
         }
         else
         {
@@ -56,7 +55,6 @@ public class Maze
         if (isMoveAllowed)
         {
             _currX += 1;
-            ShowStatus();
         }
         else
         {
@@ -93,7 +91,6 @@ public class Maze
         if (isMoveAllowed)
         {
             _currY += 1;
-            ShowStatus();
         }
         else
         {

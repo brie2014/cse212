@@ -122,6 +122,11 @@ public static class SetsAndMapsTester
             var wordArray = word.ToCharArray();
             Array.Reverse(wordArray);
             var reverseString = new string(wordArray);
+            // ignore words that are all the same letter
+            if (word == reverseString)
+            {
+                continue;
+            }
             // Make a pair and make sure it will always be in the same order alphebetically
             var pair = (word, reverseString);
             if (String.Compare(word, reverseString) != 1)
@@ -317,7 +322,6 @@ public static class SetsAndMapsTester
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
-        Console.WriteLine(featureCollection);
         // 1. Add your code to map the json to the feature collection object
         // 2. Print out each place a earthquake has happened today
     }
