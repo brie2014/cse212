@@ -114,7 +114,6 @@ public static class SetsAndMapsTester
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
-        var wordSet = new HashSet<string>(words);
         var pairs = new HashSet<(string, string)>();
         foreach (string word in words)
         {
@@ -127,15 +126,15 @@ public static class SetsAndMapsTester
             {
                 continue;
             }
-            // Make a pair and make sure it will always be in the same order alphebetically
+            // Make a pair always in the same order alphebetically
             var pair = (word, reverseString);
             if (String.Compare(word, reverseString) != 1)
             {
                 pair = (reverseString, word);
             }
-            // Since pair order is always the same, if the pair already exists, the set won't take the duplicate
-            if (wordSet.Contains(reverseString))
+            if (words.Contains(reverseString))
             {
+                // If the pair already exists, the set won't take the duplicate
                 pairs.Add(pair);
 
             };
