@@ -114,26 +114,30 @@ public static class SetsAndMapsTester
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
-
-        // if intersect.length is 2, they are a pair
-
+        var wordSet = new HashSet<string>(words);
+        var pairs = new HashSet<(string, string)>();
         foreach (string word in words)
         {
             // reverse word
             var wordArray = word.ToCharArray();
-
             Array.Reverse(wordArray);
             var reverseString = new string(wordArray);
-
-            // look for reversed word
-            var indexOfPair = Array.IndexOf(words, reverseString);
-            var indexOfWord = Array.IndexOf(words, word);
-            if (indexOfPair > -1 && indexOfWord > indexOfPair)
+            // Make a pair and make sure it will always be in the same order alphebetically
+            var pair = (word, reverseString);
+            if (String.Compare(word, reverseString) != 1)
             {
-                var pair = words[indexOfPair];
-                Console.WriteLine($"{word} & {pair}");
+                pair = (reverseString, word);
             }
+            // Since pair order is always the same, if the pair already exists, the set won't take the duplicate
+            if (wordSet.Contains(reverseString))
+            {
+                pairs.Add(pair);
 
+            };
+        }
+        foreach ((string word, string pair) pair in pairs)
+        {
+            Console.WriteLine($"{pair.word} & {pair.pair}");
         }
     }
 
