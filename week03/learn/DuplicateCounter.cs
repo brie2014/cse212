@@ -22,9 +22,11 @@
         Console.WriteLine($"Number of duplicates : {CountDuplicates(data)}");
     }
 
+    // Make a set of the data. Subtract the length of that set of unique numbers from the length of the original data. The difference is the duplicate count 
     private static int CountDuplicates(int[] data)
     {
-        // Add code here.
-        return 0;
+        var uniqueSet = new HashSet<int>(data);
+        var duplicateCount = data.Length - uniqueSet.Count;
+        return duplicateCount;
     }
 }
