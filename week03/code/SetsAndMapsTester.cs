@@ -114,8 +114,8 @@ public static class SetsAndMapsTester
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
-        var pairs = new HashSet<(string, string)>();
-        foreach (string word in words)
+        var seenWords = new HashSet<string>();
+        foreach (var word in words)
         {
             // reverse word
             var wordArray = word.ToCharArray();
@@ -126,22 +126,12 @@ public static class SetsAndMapsTester
             {
                 continue;
             }
-            // Make a pair always in the same order alphebetically
-            var pair = (word, reverseString);
-            if (String.Compare(word, reverseString) != 1)
-            {
-                pair = (reverseString, word);
-            }
-            if (words.Contains(reverseString))
-            {
-                // If the pair already exists, the set won't take the duplicate
-                pairs.Add(pair);
-
-            };
-        }
-        foreach ((string word, string pair) pair in pairs)
-        {
-            Console.WriteLine($"{pair.word} & {pair.pair}");
+            // If the reverse string is in the words seen set then I know that
+            // I have previously seen a word that will pair with my current word. Print out that pair
+            if (seenWords.Contains(reverseString))
+                Console.WriteLine($"{word} & {reverseString}");
+            // Add this word to the words seen set
+            seenWords.Add(word);
         }
     }
 
